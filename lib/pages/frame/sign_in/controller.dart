@@ -1,5 +1,6 @@
 import 'package:chatty/common/entities/entities.dart';
 import 'package:chatty/common/routes/names.dart';
+import 'package:chatty/common/store/store.dart';
 import 'package:chatty/pages/frame/sign_in/state.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -45,6 +46,8 @@ class SignInController extends GetxController {
   }
 
   void asyncPostAllData() {
+    // on successful login. setting the SharedPref flag of isLogin to true
+    UserStore.to.setIsLogin = true;
     Get.offAllNamed(AppRoutes.Message);
   }
 }
