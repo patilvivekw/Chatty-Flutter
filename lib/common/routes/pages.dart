@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../pages/frame/sign_in/index.dart';
 import '../../pages/frame/welcome/index.dart';
 import '../../pages/message/index.dart';
 import '../middlewares/router_auth.dart';
@@ -18,13 +19,13 @@ class AppPages {
       page: () => const WelcomePage(),
       binding: WelcomeBinding(),
     ),
-/*
+    // Sign in page
     GetPage(
       name: AppRoutes.SIGN_IN,
-      page: () => SignInPage(),
+      page: () => const SignInPage(),
       binding: SignInBinding(),
     ),
-
+/*
     // 需要登录
     // GetPage(
     //   name: AppRoutes.Application,
