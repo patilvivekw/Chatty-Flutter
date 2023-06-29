@@ -27,6 +27,7 @@ class SignInPage extends GetView<SignInController> {
     return GestureDetector(
       onTap: () {
         print("Sign in with $loginType....");
+        controller.handleSignIn(loginType);
       },
       child: Container(
         width: 295.w,
