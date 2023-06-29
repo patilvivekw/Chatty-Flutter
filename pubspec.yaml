@@ -118,12 +118,14 @@ dependencies:
 
   flutter_verification_code: ^1.1.6
 
-  agora_rtc_engine: ^6.1.0
+  agora_rtc_engine: ^6.2.0
 
   just_audio: ^0.9.30
 
   flutter_local_notifications: ^13.0.0
 
+dependency_overrides:
+  webview_flutter_wkwebview: '3.5.0'
 
 dev_dependencies:
   flutter_test:
