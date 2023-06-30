@@ -1,5 +1,6 @@
 import 'package:chatty/common/style/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
               theme: AppTheme.light,
               initialRoute: AppPages.INITIAL,
               getPages: AppPages.routes,
+              builder: EasyLoading.init(),
             ));
   }
 }

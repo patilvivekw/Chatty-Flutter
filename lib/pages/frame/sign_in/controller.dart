@@ -1,9 +1,16 @@
+import 'dart:convert';
+
+import 'package:chatty/common/apis/apis.dart';
 import 'package:chatty/common/entities/entities.dart';
 import 'package:chatty/common/routes/names.dart';
-import 'package:chatty/common/store/store.dart';
+import 'package:chatty/common/widgets/toast.dart';
 import 'package:chatty/pages/frame/sign_in/state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../common/store/user.dart';
 
 class SignInController extends GetxController {
   SignInController();
@@ -35,7 +42,8 @@ class SignInController extends GetxController {
           loginRequestEntity.open_id = id;
           loginRequestEntity.type = 2;
 
-          asyncPostAllData();
+          print(jsonEncode(loginRequestEntity));
+          asyncPostAllData(loginRequestEntity);
         }
       } else {
         print("Login type not sure...");
@@ -45,9 +53,23 @@ class SignInController extends GetxController {
     }
   }
 
-  void asyncPostAllData() {
+  Future<void> asyncPostAllData(LoginRequestEntity loginRequestEntity) async {
+    EasyLoading.show(
+        indicator: const CircularProgressIndicator(),
+        maskType: EasyLoadingMaskType.clear,
+        dismissOnTap: true);
+    var result = await UserAPI.Login(params: loginRequestEntity);
+
+    if (result.code == 0) {
+      await UserStore.to.saveProfile(result.data!);
+      EasyLoading.dismiss();
+    } else {
+      EasyLoading.dismiss();
+      toastInfo(msg: "User error...!");
+    }
+
     // on successful login. setting the SharedPref flag of isLogin to true
-    UserStore.to.setIsLogin = true;
+    // UserStore.to.setIsLogin = true;
     Get.offAllNamed(AppRoutes.Message);
   }
 }

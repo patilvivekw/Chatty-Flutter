@@ -8,7 +8,6 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart' hide FormData;
 
@@ -21,7 +20,7 @@ class HttpUtil {
   CancelToken cancelToken = new CancelToken();
 
   HttpUtil._internal() {
-    // BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
+    // BaseOptions、Options、RequestOptions
     BaseOptions options = new BaseOptions(
       // 请求基地址,可以包含子路径
       baseUrl: SERVER_API_URL,
@@ -237,7 +236,7 @@ class HttpUtil {
     return response.data;
   }
 
-  /// restful post 操作
+  /// restful post method
   Future post(
     String path, {
     dynamic data,
