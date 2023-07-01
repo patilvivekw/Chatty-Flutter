@@ -1,3 +1,4 @@
+import 'package:chatty/common/routes/names.dart';
 import 'package:chatty/common/values/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,9 +36,9 @@ class MessagePage extends GetView<MessageController> {
                         ]),
                     child: controller.state.head_detail.value.avatar == null
                         ? Image(
-                            image:
-                                AssetImage("assets/images/account_header.png"),
-                          )
+                      image:
+                      AssetImage("assets/images/account_header.png"),
+                    )
                         : Text("HI"),
                   ),
                   onTap: () {
@@ -82,7 +83,33 @@ class MessagePage extends GetView<MessageController> {
                   title: _headBar(),
                 )
               ],
-            )
+            ),
+            Positioned(
+                right: 20.w,
+                bottom: 70.w,
+                height: 50.w,
+                width: 50.w,
+                child: GestureDetector(
+                  child: Container(
+                    height: 50.w,
+                    width: 50.w,
+                    padding: EdgeInsets.all(10.w),
+                    decoration: BoxDecoration(
+                        color: AppColors.primaryElement,
+                        borderRadius: BorderRadius.all(Radius.circular(40.w)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: const Offset(1, 1))
+                        ]),
+                    child: Image.asset("assets/icons/contact.png"),
+                  ),
+                  onTap: () {
+                    Get.toNamed(AppRoutes.Contact);
+                  },
+                ))
           ],
         ),
       ),
